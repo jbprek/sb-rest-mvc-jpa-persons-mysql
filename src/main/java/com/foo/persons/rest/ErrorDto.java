@@ -1,4 +1,4 @@
-package com.foo.app.rest;
+package com.foo.persons.rest;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;

@@ -1,6 +1,6 @@
-package com.foo.app.rest;
+package com.foo.persons.rest;
 
-import com.foo.app.service.PersonDaoService;
+import com.foo.persons.service.PersonDaoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;

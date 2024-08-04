@@ -1,8 +1,6 @@
-package com.foo.app.rest;
+package com.foo.persons.rest;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class PersonApiControllerTest {
 

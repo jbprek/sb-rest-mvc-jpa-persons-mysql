@@ -1,4 +1,4 @@
-package com.foo.app;
+package com.foo.persons;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

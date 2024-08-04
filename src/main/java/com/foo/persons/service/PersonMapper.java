@@ -1,8 +1,8 @@
-package com.foo.app.service;
+package com.foo.persons.service;
 
-import com.foo.app.db.PersonEntity;
-import com.foo.app.rest.PersonInDto;
-import com.foo.app.rest.PersonOutDto;
+import com.foo.persons.db.PersonEntity;
+import com.foo.persons.rest.PersonInDto;
+import com.foo.persons.rest.PersonOutDto;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;

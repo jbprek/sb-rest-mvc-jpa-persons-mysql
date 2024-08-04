@@ -1,4 +1,4 @@
-package com.foo.app.service.exception;
+package com.foo.persons.service.exception;
 
 public class PersonDaoNotFoundException extends PersonDaoException{
     public PersonDaoNotFoundException(String message) {

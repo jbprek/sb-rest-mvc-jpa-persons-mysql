@@ -1,8 +1,8 @@
-package com.foo.app.rest;
+package com.foo.persons.rest;
 
-import com.foo.app.service.exception.PersonDaoException;
-import com.foo.app.service.exception.PersonDaoExistsException;
-import com.foo.app.service.exception.PersonDaoNotFoundException;
+import com.foo.persons.service.exception.PersonDaoException;
+import com.foo.persons.service.exception.PersonDaoExistsException;
+import com.foo.persons.service.exception.PersonDaoNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

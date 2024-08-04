@@ -1,4 +1,4 @@
-package com.foo.app.db;
+package com.foo.persons.db;
 
 import jakarta.persistence.*;
 import lombok.*;

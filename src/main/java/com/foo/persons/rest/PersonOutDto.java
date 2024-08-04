@@ -1,4 +1,4 @@
-package com.foo.app.rest;
+package com.foo.persons.rest;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

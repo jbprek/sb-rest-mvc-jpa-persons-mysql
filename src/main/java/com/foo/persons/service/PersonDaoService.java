@@ -1,8 +1,8 @@
-package com.foo.app.service;
+package com.foo.persons.service;
 
 
-import com.foo.app.rest.PersonInDto;
-import com.foo.app.rest.PersonOutDto;
+import com.foo.persons.rest.PersonInDto;
+import com.foo.persons.rest.PersonOutDto;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
-package com.foo.app.service;
+package com.foo.persons.service;
 
-import com.foo.app.db.PersonEntity;
-import com.foo.app.rest.PersonInDto;
+import com.foo.persons.db.PersonEntity;
+import com.foo.persons.rest.PersonInDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package com.foo.app.db;
+package com.foo.persons.db;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
