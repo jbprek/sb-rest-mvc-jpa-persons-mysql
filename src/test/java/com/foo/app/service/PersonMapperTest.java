@@ -24,7 +24,7 @@ class PersonMapperTest {
                 .birthDate(LocalDate.of(2000, 1, 1))
                 .country("USA")
                 .build();
-        var dto = mapper.entityToDTO(entity);
+        var dto = mapper.toDto(entity);
         assertAll(
                 () -> assertNotNull(dto),
                 () -> assertEquals(entity.getId(), dto.getId()),
@@ -56,7 +56,7 @@ class PersonMapperTest {
                         .build()
         );
 
-        var dtoList = mapper.entitiesToDTOs(entityList);
+        var dtoList = mapper.toDTOs(entityList);
         assertAll(
                 () -> assertNotNull(dtoList),
                 () -> assertEquals(entityList.size(), dtoList.size())
@@ -73,7 +73,7 @@ class PersonMapperTest {
                 .country("USA")
                 .build();
 
-        var entity = mapper.dtoToEntity(dto);
+        var entity = mapper.toEntity(dto);
 
         assertAll(
                 () -> assertNotNull(entity),
@@ -99,7 +99,7 @@ class PersonMapperTest {
                 .country("USA")
                 .build();
 
-        mapper.updateEntity(dto, entity);
+        mapper.partialUpdate(dto, entity);
         assertAll(
                 () -> assertEquals(1L, entity.getId()),
                 () -> assertEquals("John", entity.getFirstName()),

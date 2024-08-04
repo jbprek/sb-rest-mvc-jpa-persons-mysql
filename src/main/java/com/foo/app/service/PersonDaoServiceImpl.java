@@ -40,7 +40,7 @@ public class PersonDaoServiceImpl implements PersonDaoService {
     public PersonOutDto getPerson(Long id) {
         var entity = repository.findById(id)
                 .orElseThrow(() -> new PersonDaoNotFoundException("Person Not found id: " + id));
-        return mapper.entityToDTO(entity);
+        return mapper.toDto(entity);
     }
 
     @Transactional(readOnly = true)
