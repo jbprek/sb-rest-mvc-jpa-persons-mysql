@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "0bb71c14-52f9-44c5-a181-4765ccba9f37",
+		"name": "Person Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1408280",
+		"_collection_link": "https://jbprekhome.postman.co/workspace/Home~6d0e69e2-fd02-45a1-88d5-9d754da356df/collection/1408280-0bb71c14-52f9-44c5-a181-4765ccba9f37?action=share&source=collection_link&creator=1408280"
+	},
+	"item": [
+		{
+			"name": "Get All Persons",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/persons/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Person",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content",
+						"value": "application/ecmascript",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Sofia\",\r\n    \"lastName\": \"Papas\",\r\n    \"birthDate\": \"1968-01-08\",\r\n    \"country\": \"GRE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a Person",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "content",
+						"value": "application/ecmascript",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Sophie\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/persons/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get A Person",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/persons/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete A Person",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/persons/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons",
+						"11"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
