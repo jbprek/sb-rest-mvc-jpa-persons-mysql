@@ -365,7 +365,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"lastName\": \"Kawasaki\"\r\n}",
+					"raw": "{\r\n    \"birthDate\": \"2080-10-29\",\r\n    \"country\" : \"JAPAN\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
