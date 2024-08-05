@@ -1,9 +1,11 @@
 package com.foo.persons.rest;
 
 import com.foo.persons.service.PersonDaoService;
+import jakarta.validation.groups.Default;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
@@ -35,12 +37,12 @@ public class PersonApiController {
     }
 
     @PutMapping
-    public PersonDto update(@RequestBody PersonDto dto) {
+    public PersonDto update(@RequestBody  @Valid PersonDto dto) {
         return daoService.updatePerson(dto);
     }
 
     @PatchMapping(path = "/{id}")
-    public PersonDto patch(@PathVariable @Min(1) Long id, @RequestBody PersonDto dto) {
+    public PersonDto patch(@PathVariable @Min(1) Long id, @RequestBody @Validated(Default.class) PersonDto dto) {
         return daoService.patchPerson(id, dto);
     }
 
