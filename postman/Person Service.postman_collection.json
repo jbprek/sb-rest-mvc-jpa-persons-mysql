@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "0bb71c14-52f9-44c5-a181-4765ccba9f37",
+		"_postman_id": "48be406c-e23f-4e2d-925d-2df426d359d9",
 		"name": "Person Service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "1408280",
-		"_collection_link": "https://jbprekhome.postman.co/workspace/Home~6d0e69e2-fd02-45a1-88d5-9d754da356df/collection/1408280-0bb71c14-52f9-44c5-a181-4765ccba9f37?action=share&source=collection_link&creator=1408280"
+		"_exporter_id": "1408280"
 	},
 	"item": [
 		{
@@ -74,7 +73,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"firstName\": \"Sophie\"\r\n}",
+					"raw": " {\r\n        \"id\": 7,\r\n        \"firstName\": \"Yuki\",\r\n        \"lastName\": \"Tsunoda\",\r\n        \"birthDate\": \"1991-10-29\",\r\n        \"country\": \"JPN\"\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -82,7 +81,41 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/persons/11",
+					"raw": "http://localhost:8080/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch a Person",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "content",
+						"value": "application/ecmascript",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"lastName\": \"Kawasaki\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/persons/7",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -90,7 +123,7 @@
 					"port": "8080",
 					"path": [
 						"persons",
-						"11"
+						"7"
 					]
 				}
 			},
@@ -102,7 +135,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/persons/11",
+					"raw": "http://localhost:8080/persons/7",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -110,7 +143,7 @@
 					"port": "8080",
 					"path": [
 						"persons",
-						"11"
+						"7"
 					]
 				}
 			},

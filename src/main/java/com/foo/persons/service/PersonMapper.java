@@ -1,8 +1,7 @@
 package com.foo.persons.service;
 
 import com.foo.persons.db.PersonEntity;
-import com.foo.persons.rest.PersonInDto;
-import com.foo.persons.rest.PersonOutDto;
+import com.foo.persons.rest.PersonDto;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
@@ -16,13 +15,13 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface PersonMapper {
 
-    PersonOutDto toDto(PersonEntity entity);
+    PersonDto toDto(PersonEntity entity);
 
-    List<PersonOutDto> toDTOs(Iterable<PersonEntity> entities);
+    List<PersonDto> toDTOs(Iterable<PersonEntity> entities);
 
-    PersonEntity toEntity(PersonInDto dto);
+    PersonEntity toEntity(PersonDto dto);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    PersonEntity partialUpdate(PersonInDto dto, @MappingTarget PersonEntity personEntity);
+    PersonEntity partialUpdate(PersonDto dto, @MappingTarget PersonEntity personEntity);
 }
 

@@ -3,7 +3,7 @@ package com.foo.persons.rest;
 import com.foo.persons.service.PersonDaoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
@@ -12,32 +12,36 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Slf4j
-@Validated
 @RestController
 @RequestMapping("/persons")
 public class PersonApiController {
 
     private final PersonDaoService daoService;
+
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    @Validated(OnCreateValidation.class)
-    public PersonOutDto create(@RequestBody @Valid final PersonInDto dto) {
+    public PersonDto create(@RequestBody @Valid final PersonDto dto) {
        return daoService.createPerson(dto);
     }
 
     @GetMapping("/{id}")
-    public PersonOutDto read(@PathVariable @Min(1) final Long id) {
+    public PersonDto read(@PathVariable @Min(1) final Long id) {
        return daoService.getPerson(id);
     }
 
     @GetMapping(path = "/all")
-    public List<PersonOutDto> readAll() {
+    public List<PersonDto> readAll() {
         return daoService.getAll();
     }
 
-    @PutMapping(path = "/{id}")
-    @Validated(OnUpdateValidation.class)
-    public PersonOutDto update(@PathVariable @Min(1) Long id, @RequestBody @Valid PersonInDto dto) {
-        return daoService.updatePerson(id, dto);
+    @PutMapping
+    public PersonDto update(@RequestBody PersonDto dto) {
+        return daoService.updatePerson(dto);
+    }
+
+    @PatchMapping(path = "/{id}")
+    public PersonDto patch(@PathVariable @Min(1) Long id, @RequestBody PersonDto dto) {
+        return daoService.patchPerson(id, dto);
     }
 
     @DeleteMapping(path = "/{id}")

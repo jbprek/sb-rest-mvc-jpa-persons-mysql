@@ -20,17 +20,16 @@ import java.time.LocalDate;
 public class PersonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "person_id")
+    @Column(name = "person_id",nullable = false)
     private Long id;
-    @Column(name = "first_name")
+    @Column(name = "first_name",nullable = false)
     private String firstName;
-    @Column(name = "last_name")
+    @Column(name = "last_name",nullable = false)
     private String lastName;
-    @Column(name = "birth_date")
+    @Column(name = "birth_date",nullable = false)
     private LocalDate birthDate;
-    @Column(name = "country")
+    @Column(name = "country",nullable = false)
     private String country;
-    @Version
-    private Long version;
+
 
 }

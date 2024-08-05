@@ -2,8 +2,8 @@ package com.foo.persons.service;
 
 import com.foo.persons.db.PersonEntity;
 import com.foo.persons.db.PersonEntityRepository;
-import com.foo.persons.rest.PersonInDto;
-import com.foo.persons.rest.PersonOutDto;
+import com.foo.persons.rest.PersonDto;
+import com.foo.persons.rest.PersonDto;
 import com.foo.persons.service.exception.PersonDaoException;
 import com.foo.persons.service.exception.PersonDaoNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ public class PersonDaoServiceImpl implements PersonDaoService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public PersonOutDto createPerson(PersonInDto dto) {
+    public PersonDto createPerson(PersonDto dto) {
         try {
             var entity = mapper.toEntity(dto);
             var resEntity = repository.save(entity);
@@ -37,7 +37,7 @@ public class PersonDaoServiceImpl implements PersonDaoService {
 
     @Transactional(readOnly = true)
     @Override
-    public PersonOutDto getPerson(Long id) {
+    public PersonDto getPerson(Long id) {
         var entity = repository.findById(id)
                 .orElseThrow(() -> new PersonDaoNotFoundException("Person Not found id: " + id));
         return mapper.toDto(entity);
@@ -45,23 +45,20 @@ public class PersonDaoServiceImpl implements PersonDaoService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<PersonOutDto> getAll() {
+    public List<PersonDto> getAll() {
         return mapper.toDTOs(repository.findAll());
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public PersonOutDto updatePerson(Long id, PersonInDto dto) {
-        try {
-            var entity = getEntity(id);
-            mapper.partialUpdate(dto, entity);
-            var updatedEntity =  repository.save(entity);
-            return mapper.toDto(updatedEntity);
-        } catch (Exception e) {
-            var msg = "Failed to create Person: " + dto;
-            log.error("{}, reason: {}", msg, e.toString());
-            throw new PersonDaoException(msg, e);
-        }
+    public PersonDto patchPerson(Long id, PersonDto dto) {
+        return update(id, dto);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public PersonDto updatePerson(PersonDto dto) {
+        return update(dto.id(), dto);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -75,5 +72,20 @@ public class PersonDaoServiceImpl implements PersonDaoService {
         return repository.findById(id)
                 .orElseThrow(() -> new PersonDaoNotFoundException("Person Not found id: " + id));
     }
+
+    private PersonDto update(Long id, PersonDto dto) {
+        try {
+            var entity = getEntity(id);
+            mapper.partialUpdate(dto, entity);
+            var updatedEntity =  repository.save(entity);
+            return mapper.toDto(updatedEntity);
+        } catch (Exception e) {
+            var msg = "Failed to create Person: " + dto;
+            log.error("{}, reason: {}", msg, e.toString());
+            throw new PersonDaoException(msg, e);
+        }
+    }
+
+
 }
 
