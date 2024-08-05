@@ -1,19 +1,18 @@
 package com.foo.persons.rest;
 
 import com.foo.persons.service.PersonDaoService;
-import jakarta.validation.groups.Default;
+import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.Min;
 import java.util.List;
 
 @RequiredArgsConstructor
 @Slf4j
+@Validated
 @RestController
 @RequestMapping("/persons")
 public class PersonApiController {
@@ -22,7 +21,7 @@ public class PersonApiController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public PersonDto create(@RequestBody @Valid final PersonDto dto) {
+    public PersonDto create(@RequestBody @Validated(ValidateOnCreate.class) PersonDto dto) {
        return daoService.createPerson(dto);
     }
 
@@ -37,12 +36,14 @@ public class PersonApiController {
     }
 
     @PutMapping
-    public PersonDto update(@RequestBody  @Valid PersonDto dto) {
+    public PersonDto update(@RequestBody @Validated(ValidateOnUpdate.class) PersonDto dto) {
         return daoService.updatePerson(dto);
     }
 
     @PatchMapping(path = "/{id}")
-    public PersonDto patch(@PathVariable @Min(1) Long id, @RequestBody @Validated(Default.class) PersonDto dto) {
+    public PersonDto patch(@PathVariable @Min(1) Long id,
+                           @RequestBody @Validated PersonDto dto)
+    {
         return daoService.patchPerson(id, dto);
     }
 

@@ -1,4 +1,6 @@
 package com.foo.persons.rest;
 
-public interface ValidateOnCreate {
+import jakarta.validation.groups.Default;
+
+public interface ValidateOnCreate extends Default {
 }

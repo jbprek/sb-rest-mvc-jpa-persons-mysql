@@ -27,6 +27,25 @@
 			"response": []
 		},
 		{
+			"name": "Get All Persons Method Not Allowed",
+			"request": {
+				"method": "HEAD",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Create Person",
 			"request": {
 				"method": "POST",
@@ -40,6 +59,108 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"firstName\": \"Sofia\",\r\n    \"lastName\": \"Papas\",\r\n    \"birthDate\": \"1968-01-08\",\r\n    \"country\": \"GRE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Person Unsupported Media Error",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content",
+						"value": "application/ecmascript",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n <root>\r\n     <firstName>Sofia</firstName>\r\n     <lastName>Papas</lastName>\r\n     <birthDate>1968-01-08</birthDate>\r\n     <country>GRE</country>\r\n </root>\r\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Person 1 Validation Error",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content",
+						"value": "application/ecmascript",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Sofia\",\r\n    \"lastName\": \"Papas\",\r\n    \"birthDate\": \"1968-01-08\",\r\n    \"country\": \"GREECE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Person Error Missing",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content",
+						"value": "application/ecmascript",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Sofia\",\r\n    \"lastName\": \"Papas\",\r\n    \"birthDate\": \"1968-01-08\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -95,7 +216,144 @@
 			"response": []
 		},
 		{
+			"name": "Update a Person Error Missing",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "content",
+						"value": "application/ecmascript",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"id\": 7,\r\n        \"firstName\": \"Yuki\",\r\n        \"lastName\": \"Tsunoda\",\r\n        \"birthDate\": \"1991-10-29\",\r\n        \"country\": \"JAPAN\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a Person Validation 1 Error",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "content",
+						"value": "application/ecmascript",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"id\": 7,\r\n        \"firstName\": \"Yuki\",\r\n        \"lastName\": \"Tsunoda\",\r\n        \"birthDate\": \"1991-10-29\",\r\n        \"country\": \"JAPAN\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a Person Validation 2 Errors",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "content",
+						"value": "application/ecmascript",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"id\": 7,\r\n        \"firstName\": \"Yuki\",\r\n        \"lastName\": \"Tsunoda\",\r\n        \"birthDate\": \"2030-10-29\",\r\n        \"country\": \"JAPAN\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Patch a Person",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "content",
+						"value": "application/ecmascript",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"lastName\": \"Kawasaki\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/persons/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch a Person Validation Error",
 			"request": {
 				"method": "PATCH",
 				"header": [
