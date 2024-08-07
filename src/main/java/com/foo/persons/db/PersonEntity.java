@@ -3,7 +3,6 @@ package com.foo.persons.db;
 import jakarta.persistence.*;
 import lombok.*;
 
-//import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Getter

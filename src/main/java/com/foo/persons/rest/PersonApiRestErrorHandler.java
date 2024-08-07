@@ -45,15 +45,16 @@ public class PersonApiRestErrorHandler {
         return mav;
     }
 
-
-    @ExceptionHandler(Exception.class)
-    public ModelAndView handleAllUncaughtException(Exception ex, ServletRequest request) {
-        request.setAttribute(RequestDispatcher.ERROR_STATUS_CODE, HttpStatus.INTERNAL_SERVER_ERROR.value());
-        request.setAttribute(RequestDispatcher.ERROR_MESSAGE, ex.getMessage());
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("/error");
-        return mav;
-    }
+//  Introduction of this will make validation errors to return 500
+//    @ExceptionHandler(Exception.class)
+//    public ModelAndView handleAllUncaughtException(Exception ex, ServletRequest request) {
+//        log.error("Uncaught exception", ex);
+//        request.setAttribute(RequestDispatcher.ERROR_STATUS_CODE, HttpStatus.INTERNAL_SERVER_ERROR.value());
+//        request.setAttribute(RequestDispatcher.ERROR_MESSAGE, ex.getMessage());
+//        ModelAndView mav = new ModelAndView();
+//        mav.setViewName("/error");
+//        return mav;
+//    }
 
 
 }
