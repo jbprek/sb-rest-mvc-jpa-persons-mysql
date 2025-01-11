@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.foo</groupId>
-	<artifactId>sb-rest-mvc-jpa-persons</artifactId>
-	<name>sb-rest-mvc-jpa-persons</name>
+	<artifactId>sb-rest-mvc-jpa-persons-h2</artifactId>
+	<name>sb-rest-mvc-jpa-persons-h2</name>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<description>Demo project for Spring Boot</description>
