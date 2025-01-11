@@ -5,7 +5,7 @@ Spring Boot, MVC Rest ,JPA H2, Mapstruct
 ## Supported versions dbs
 
 - boot-3.2x  : Boot 3.2.x
-- branch 3.3.x     : Boot 3.3.x
+- branch boot-3.3.x     : Boot 3.3.x
 
 ## Features & Frameworks
 - MVC
