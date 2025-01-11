@@ -3,7 +3,6 @@ package com.foo.persons.service;
 import com.foo.persons.db.PersonEntity;
 import com.foo.persons.db.PersonEntityRepository;
 import com.foo.persons.rest.PersonDto;
-import com.foo.persons.rest.PersonDto;
 import com.foo.persons.service.exception.PersonDaoException;
 import com.foo.persons.service.exception.PersonDaoNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 @Service
+@Transactional(readOnly = true)
 public class PersonDaoServiceImpl implements PersonDaoService {
     private final PersonMapper mapper;
     private final PersonEntityRepository repository;
@@ -35,7 +35,7 @@ public class PersonDaoServiceImpl implements PersonDaoService {
         }
     }
 
-    @Transactional(readOnly = true)
+
     @Override
     public PersonDto getPerson(Long id) {
         var entity = repository.findById(id)
@@ -43,7 +43,7 @@ public class PersonDaoServiceImpl implements PersonDaoService {
         return mapper.toDto(entity);
     }
 
-    @Transactional(readOnly = true)
+
     @Override
     public List<PersonDto> getAll() {
         return mapper.toDTOs(repository.findAll());

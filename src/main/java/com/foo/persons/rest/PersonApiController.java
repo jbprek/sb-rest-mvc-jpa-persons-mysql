@@ -47,6 +47,7 @@ public class PersonApiController {
         return daoService.patchPerson(id, dto);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping(path = "/{id}")
     public void delete(@PathVariable @Min(1) Long id) {
         daoService.deletePerson(id);

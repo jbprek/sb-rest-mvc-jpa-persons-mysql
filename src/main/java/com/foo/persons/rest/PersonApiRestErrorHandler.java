@@ -17,13 +17,15 @@ import org.springframework.web.servlet.ModelAndView;
 @ControllerAdvice
 public class PersonApiRestErrorHandler {
 
+    public static final String ERROR_PATH = "/error";
+
     @ExceptionHandler(PersonDaoNotFoundException.class)
     public ModelAndView handlePersonDaoNotFoundException(PersonDaoNotFoundException ex, ServletRequest request) {
         request.setAttribute(RequestDispatcher.ERROR_STATUS_CODE, HttpStatus.NOT_FOUND.value());
         request.setAttribute(RequestDispatcher.ERROR_MESSAGE, ex.getMessage());
 
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("/error");
+        mav.setViewName(ERROR_PATH);
         return mav;
     }
 
@@ -32,7 +34,7 @@ public class PersonApiRestErrorHandler {
         request.setAttribute(RequestDispatcher.ERROR_STATUS_CODE, HttpStatus.BAD_REQUEST.value());
         request.setAttribute(RequestDispatcher.ERROR_MESSAGE, ex.getMessage());
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("/error");
+        mav.setViewName(ERROR_PATH);
         return mav;
     }
 
@@ -41,20 +43,11 @@ public class PersonApiRestErrorHandler {
         request.setAttribute(RequestDispatcher.ERROR_STATUS_CODE, HttpStatus.BAD_REQUEST.value());
         request.setAttribute(RequestDispatcher.ERROR_MESSAGE, ex.getMessage());
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("/error");
+        mav.setViewName(ERROR_PATH);
         return mav;
     }
 
-//  Introduction of this will make validation errors to return 500
-//    @ExceptionHandler(Exception.class)
-//    public ModelAndView handleAllUncaughtException(Exception ex, ServletRequest request) {
-//        log.error("Uncaught exception", ex);
-//        request.setAttribute(RequestDispatcher.ERROR_STATUS_CODE, HttpStatus.INTERNAL_SERVER_ERROR.value());
-//        request.setAttribute(RequestDispatcher.ERROR_MESSAGE, ex.getMessage());
-//        ModelAndView mav = new ModelAndView();
-//        mav.setViewName("/error");
-//        return mav;
-//    }
+
 
 
 }
