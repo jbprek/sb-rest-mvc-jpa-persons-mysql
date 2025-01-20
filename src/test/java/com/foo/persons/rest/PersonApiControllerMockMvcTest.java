@@ -3,6 +3,9 @@ package com.foo.persons.rest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.foo.persons.service.PersonDaoService;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -12,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -49,19 +53,25 @@ class PersonApiControllerMockMvcTest {
                 .andExpect(jsonPath("$.country").value("USA"));
     }
 
-    @Test
-    void readPersonSuccessfully() throws Exception {
-        PersonDto personDto = new PersonDto(1L, "John", "Doe", LocalDate.of(1990, 1, 1), "USA");
+    @ParameterizedTest
+    @MethodSource("providePersons") void readPersonSuccessfullyParameterized(Long id, String firstName, String lastName, String birthDate, String country) throws Exception {
 
-        when(service.getPerson(1L)).thenReturn(personDto);
+        when(service.getPerson(id)).thenReturn(new PersonDto(id, firstName, lastName, LocalDate.parse(birthDate), country));
 
-        mockMvc.perform(get("/persons/1"))
+        mockMvc.perform(get("/persons/"+id))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1L))
-                .andExpect(jsonPath("$.firstName").value("John"))
-                .andExpect(jsonPath("$.lastName").value("Doe"))
-                .andExpect(jsonPath("$.birthDate").value("1990-01-01"))
-                .andExpect(jsonPath("$.country").value("USA"));
+                .andExpect(jsonPath("$.id").value(id))
+                .andExpect(jsonPath("$.firstName").value(firstName))
+                .andExpect(jsonPath("$.lastName").value(lastName))
+                .andExpect(jsonPath("$.birthDate").value(birthDate))
+                .andExpect(jsonPath("$.country").value(country));
+    }
+
+    public static Stream<Arguments> providePersons() {
+        return Stream.of(
+                Arguments.of(1L, "John", "Doe", "1990-01-01", "USA"),
+                Arguments.of(2L, "Jane", "Smith", "1985-05-05", "Canada")
+        );
     }
 
     @Test
